@@ -7,40 +7,26 @@ import shortid from 'shortid';
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
   componentDidMount() {
-    console.log('App componentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    const parsedСontacts = JSON.parse(contacts);
 
-    // const todos = localStorage.getItem('todos');
-    // const parsedTodos = JSON.parse(todos);
-
-    // if (parsedTodos) {
-    //   this.setState({ todos: parsedTodos });
-    // }
+    if (parsedСontacts) {
+      this.setState({ contacts: parsedСontacts });
+    }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log('App componentDidUpdate');
+  componentDidUpdate(prevState) {
+    const nextСontacts = this.state.contacts;
+    const prevСontacts = prevState.contacts;
 
-    //   const nextTodos = this.state.todos;
-    //   const prevTodos = prevState.todos;
-
-    //   if (nextTodos !== prevTodos) {
-    //     console.log('Обновилось поле todos, записываю todos в хранилище');
-    //     localStorage.setItem('todos', JSON.stringify(nextTodos));
-    //   }
-
-    //   if (nextTodos.length > prevTodos.length && prevTodos.length !== 0) {
-    //     this.toggleModal();
-    //   }
+    if (nextСontacts !== prevСontacts) {
+      localStorage.setItem('contacts', JSON.stringify(nextСontacts));
+    }
   }
 
   handleSubmit = ({ name, number }) => {
@@ -87,10 +73,10 @@ class App extends Component {
 
     return (
       <>
-        <h1>Phonebook</h1>
+        <h1 className="title">Phonebook</h1>
         <FormContacts onSubmit={this.handleSubmit} />
 
-        <h1>Contacts</h1>
+        <h2 className="title">Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
 
         <ListContacts contacts={contactsToShow} onDelete={this.handlerDelete} />

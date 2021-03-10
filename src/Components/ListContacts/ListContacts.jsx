@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const ListContacts = ({ contacts, onDelete }) => {
   return (
-    <ul>
+    <ul className="container list">
       {contacts.map(contact => (
         <ContactItem key={contact.id} contact={contact} onDelete={onDelete} />
       ))}

@@ -7,11 +7,11 @@ const ContactItem = ({ contact, onDelete }) => {
   const handleDelete = id => onDelete(id);
 
   return (
-    <li key={id} id={id}>
+    <li key={id} id={id} className="contact">
       <p>
         {name}: {number}
       </p>
-      <button type="button" onClick={() => handleDelete(id)}>
+      <button type="button" className="btn" onClick={() => handleDelete(id)}>
         Delete
       </button>
     </li>

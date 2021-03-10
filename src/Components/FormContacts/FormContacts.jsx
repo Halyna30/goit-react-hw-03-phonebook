@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './FormContacts.module.css';
+import s from './FormContacts.module.css';
 
 class FormContacts extends Component {
   static propTypes = {
@@ -43,12 +43,11 @@ class FormContacts extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={s.form}>
         <label className="label">
           Name
           <input
             type="text"
-            placeholder="Enter name"
             name="name"
             value={name}
             onChange={this.handleChange}
@@ -59,7 +58,6 @@ class FormContacts extends Component {
           Phone Number
           <input
             type="tel"
-            placeholder="Enter phone number"
             name="number"
             value={number}
             onChange={this.handleChange}
@@ -69,6 +67,7 @@ class FormContacts extends Component {
         <button
           type="submit"
           disabled={name === '' || number === '' ? true : false}
+          className="btn"
         >
           Add contact
         </button>

@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Filter = ({ value, onChange }) => (
-  <label className="label">
-    Find contacts by name
-    <input
-      type="text"
-      value={value}
-      onChange={onChange}
-      className="inputFinder"
-    />
-  </label>
+  <div className="container">
+    <label className="label">
+      Find contacts by name
+      <input type="text" value={value} onChange={onChange} className="input" />
+    </label>
+  </div>
 );
 
 Filter.propTypes = {
